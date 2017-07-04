@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
 import { connect } from 'react-redux';
+
+import { Button, Icon } from 'native-base';
+import { FontAwesome } from '@expo/vector-icons';
+
 import { LoadingScreen } from '../../commons';
 import { MyMeetupsList } from './components';
 
@@ -9,11 +12,29 @@ import { fetchMyMeetups } from './actions';
 import Colors from '../../../constants/Colors';
 import styles from './styles/HomeScreen';
 
-@connect(null, { fetchMyMeetups })
+@connect(
+  state => ({
+    myMeetups: state.home.myMeetups
+  }),
+  { fetchMyMeetups }
+)
 export default class HomeScreen extends Component {
-  static navigationOptions = {
-    headerStyle: { backgroundColor: Colors.redColor },
+  static navigationOptions = ({ navigation }) => ({
     // headerTitleStyle:{ color: 'green'},
+    headerStyle: { backgroundColor: Colors.redColor },
+    headerRight:
+      <Button
+        transparent
+        onPress={() => navigation.navigate('CreateMeetup')}
+      >
+        <Icon
+          name="md-add-circle"
+          style={{
+            fontSize: 30,
+            color: Colors.whiteColor
+          }}
+        />
+      </Button>,
     tabBarIcon: ({ tintColor }) => (
       <FontAwesome
         name="home"
@@ -21,15 +42,28 @@ export default class HomeScreen extends Component {
         color={tintColor}
       />
     )
-  }
+  });
 
   componentDidMount() {
     this.props.fetchMyMeetups();
   }
 
   render() {
-    if (this.state.loading) {
+    const {
+      myMeetups: {
+        isFetched,
+        data,
+        error
+      }
+    } = this.props;
+    if (!isFetched) {
       return <LoadingScreen />;
+    } else if (error.on) {
+      return (
+        <View>
+          <Text>{error.message}</Text>
+        </View>
+      );
     }
     return (
       <View style={styles.root}>
@@ -37,7 +71,7 @@ export default class HomeScreen extends Component {
           <Text>HomeScreen</Text>
         </View>
         <View style={styles.bottomContainer}>
-          <MyMeetupsList meetups={this.state.meetups} />
+          <MyMeetupsList meetups={data} />
         </View>
       </View>
     );
