@@ -1,4 +1,4 @@
-import Expo from 'expo';
+import Expo, { AppLoading } from 'expo';
 import React from 'react';
 import { Provider } from 'react-redux';
 import EStylesheet from 'react-native-extended-stylesheet';
@@ -26,7 +26,7 @@ class App extends React.Component {
   }
   render() {
     if (!this.state.fontLoaded) {
-      return <Expo.AppLoading />;
+      return <AppLoading />;
     }
     return (
       <Provider store={store}>
