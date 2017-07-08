@@ -1,36 +1,36 @@
 import {
   CREATE_MEETUP,
   CREATE_MEETUP_ERROR,
-  CREATE_MEETUP_SUCCESS
+  CREATE_MEETUP_SUCCESS,
 } from './actions';
 
 const INITIAL_STATE = {
   error: {
     on: false,
-    message: null
+    message: null,
   },
-  isLoading: false
-}
+  isLoading: false,
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CREATE_MEETUP:
       return {
         ...INITIAL_STATE,
-        isLoading: true
+        isLoading: true,
       };
     case CREATE_MEETUP_SUCCESS:
       return {
         ...INITIAL_STATE,
-        isLoading: false
+        isLoading: false,
       };
-    case CREATE_MEETUP_SUCCESS:
+    case CREATE_MEETUP_ERROR:
       return {
         error: {
           on: true,
-          message: 'Error creating meetup!'
+          message: 'Error creating meetup!',
         },
-        isLoading: false
+        isLoading: false,
       };
     default:
       return state;

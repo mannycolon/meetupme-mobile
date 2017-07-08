@@ -6,7 +6,9 @@
   "private": true,
   "main": "main.js",
   "scripts": {
-    "postinstall": "rndebugger-open"
+    "postinstall": "rndebugger-open",
+    "lint": "eslint src main.js",
+    "lint:fix": "eslint --fix src main.js"
   },
   "dependencies": {
     "axios": "^0.16.2",

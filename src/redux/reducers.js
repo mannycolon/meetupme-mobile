@@ -3,11 +3,11 @@ import { reducer as form } from 'redux-form';
 
 import {
   HomeReducer,
-  CreateMeetupReducer
+  CreateMeetupReducer,
 } from '../screens';
 
 export default combineReducers({
   home: HomeReducer,
   createMeetup: CreateMeetupReducer,
-  form
+  form,
 });

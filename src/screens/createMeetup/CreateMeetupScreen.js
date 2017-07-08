@@ -11,7 +11,6 @@ import { LoadingScreen } from '../../commons';
 import Colors from '../../../constants/Colors';
 import styles from './styles/CreateMeetupScreen';
 
-
 class CreateMeetupScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Create a new Meetup',
@@ -27,7 +26,7 @@ class CreateMeetupScreen extends Component {
           size={30}
           color="#fff"
         />
-      </TouchableOpacity>
+      </TouchableOpacity>,
   });
 
   state = {
@@ -68,7 +67,7 @@ class CreateMeetupScreen extends Component {
 
   render() {
     const {
-      meetup
+      meetup,
     } = this.props;
 
     if (meetup.isLoading) {
@@ -104,7 +103,7 @@ class CreateMeetupScreen extends Component {
 
 export default connect(
   state => ({
-    meetup: state.createMeetup
+    meetup: state.createMeetup,
   }),
   { createMeetup }
 )(CreateMeetupScreen);

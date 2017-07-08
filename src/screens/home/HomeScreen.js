@@ -13,7 +13,7 @@ import styles from './styles/HomeScreen';
 
 @connect(
   state => ({
-    myMeetups: state.home.myMeetups
+    myMeetups: state.home.myMeetups,
   }),
   { fetchMyMeetups }
 )
@@ -38,7 +38,7 @@ export default class HomeScreen extends Component {
         size={25}
         color={tintColor}
       />
-    )
+    ),
   });
 
   componentDidMount() {
@@ -50,8 +50,8 @@ export default class HomeScreen extends Component {
       myMeetups: {
         isFetched,
         data,
-        error
-      }
+        error,
+      },
     } = this.props;
     if (!isFetched) {
       return <LoadingScreen />;
@@ -74,10 +74,6 @@ export default class HomeScreen extends Component {
     );
   }
 }
-
-
-
-
 
 /**
  * import { Button, Icon } from 'native-base';

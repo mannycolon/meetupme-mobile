@@ -12,7 +12,7 @@ export default class ProfileSreen extends Component {
         size={25}
         color={tintColor}
       />
-    )
+    ),
   }
 
   render() {

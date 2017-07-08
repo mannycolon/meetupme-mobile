@@ -12,7 +12,7 @@ export default class NotificationsScreen extends Component {
         size={25}
         color={tintColor}
       />
-    )
+    ),
   }
 
   render() {
