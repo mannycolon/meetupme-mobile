@@ -23,7 +23,7 @@ export default TabNavigator({
   tabBarPosition: 'bottom',
   tabBarOptions: {
     showLabel: false,
-    showIcon: true, // android doenst show it automatically.
+    showIcon: true, // android doesn't show it automatically.
     inactiveTintColor: Colors.blackBlueColor,
     activeTintColor: Colors.redColor,
     pressColor: Colors.redColor,
