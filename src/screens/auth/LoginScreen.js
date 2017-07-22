@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Facebook } from 'expo';
+import { Facebook, Google } from 'expo';
 import { Text, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -7,6 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Fonts from '../../../constants/Fonts';
 import Colors from '../../../constants/Colors';
 import fbConfig from '../../../constants/fbConfig';
+import googleConfig from '../../../constants/googleConfig';
 
 const FlexContainer = styled.View`
   flex: 1;
@@ -53,7 +54,25 @@ export default class LoginScreen extends Component {
 
     if (type === 'success') {
       const resp = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert('Logged in!', `Hi ${(await resp.json()).name}`);
+      Alert.alert('Logged with Facebook!', `Hi ${(await resp.json()).name}`);
+    }
+  }
+
+  async _loginWithGoogle() {
+    try {
+      const result = await Google.logInAsync({
+        iosClientId: googleConfig.CLIENT_ID_IOS,
+        androidClientId: googleConfig.CLIENT_ID_ANDROID,
+        scopes: ['profile', 'email'],
+      });
+
+      if (result.type === 'success') {
+        Alert.alert(`Logged with Google! ${result.accessToken}`);
+      } else {
+        return { cancellled: true };
+      }
+    } catch (err) {
+      throw err;
     }
   }
 
