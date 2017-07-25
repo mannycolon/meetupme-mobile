@@ -12,23 +12,6 @@ import Colors from '../../../constants/Colors';
 import styles from './styles/CreateMeetupScreen';
 
 class CreateMeetupScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Create a new Meetup',
-    headerStyle: { backgroundColor: Colors.redColor },
-    headerTitleStyle: { color: Colors.whiteColor },
-    headerLeft:
-      <TouchableOpacity
-        style={styles.iconClose}
-        onPress={() => navigation.goBack()}
-      >
-        <MaterialIcons
-          name="close"
-          size={30}
-          color="#fff"
-        />
-      </TouchableOpacity>,
-  });
-
   state = {
     isDateTimePickerVisible: false,
     date: moment(),
